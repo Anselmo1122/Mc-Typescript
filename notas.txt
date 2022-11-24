@@ -1,0 +1,55 @@
+
+TypeScript -----------------------------------------------
+
+
+Sesión 1 -------------------------------------------------
+
+TypeScript es un superconjunto de JavaScript creado de la mano
+de microsoft para poder darle un tipado fuerte a JavaScript junto 
+con otras características típicas de lenguajes modernos.
+
+Dependencias iniciales para trabajar con TypeScript:
+
+ - @types/node: dependencia para instalar dependencias de ts.
+ - nodemon: es para actualizar cambios en tiempo real.
+ - ts-node: es para ejecutar cualquier archivo ts.
+ - typescript: instalar ts. 
+
+Comando para iniciar y configurar ts:
+
+ - npx tsc --init --rootDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowjs true --noImplicitAny true
+
+Al ejecutar este comando se generará un archivo "tsconfig.json" con 
+todas las posibles configuraciones comentadas, excepto las que se definen
+previamente al ejecutar el comando.
+
+Ahora generaremos algunos scripts para empezar a ejecutar nuestros archivos.
+
+ - "tsNode": "cd ./src && node index.ts"
+
+  Ejecutará index.ts
+
+ - "start": "nodemon"
+
+  Ejecutará nodemon según la configuración dada.
+
+ - "transpilation": "tsc"
+
+  Ejecutará TypeScript compiler según la configuración, es decir,
+  creará una carpeta llamada "build" con un archivo "index.js" producto
+  de la transpilación de TypeScript a JavaScript.
+
+  "build:prod": "rimraf ./build && tsc",
+
+  Este cmd ejecuta rimraf en la carpeta "build", y además el comando tsc,
+  el cual transpila el código de ts a js.
+    
+  "start:prod": "npm run build:prod && node build/index.js"
+
+  Ejecuta el comando anterior y además ejecuta el index.js obtenido.
+
+
+Sesión 2 -------------------------------------------------
+
+
+
