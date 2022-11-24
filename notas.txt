@@ -4,6 +4,10 @@ TypeScript -----------------------------------------------
 
 Sesión 1 -------------------------------------------------
 
+TypeScript es un lenguaje de programación libre y de código abierto 
+desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, 
+que esencialmente añade tipos estáticos y objetos basados en clases.
+
 TypeScript es un superconjunto de JavaScript creado de la mano
 de microsoft para poder darle un tipado fuerte a JavaScript junto 
 con otras características típicas de lenguajes modernos.
