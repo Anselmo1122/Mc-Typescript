@@ -1,6 +1,4 @@
-// Este es un comentarion en TS.
-
-import { table } from "console";
+// Este es un comentario en TS.
 
 console.log("Hola TypeScript");
 console.log("Hola Anselmo");
@@ -59,7 +57,7 @@ console.log(`${a}, ${b}, ${c}`);
 
 console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
 
-// Primitive Types: string, number, boolean, void, any, null y undefined.
+// Primitive Types: string, number, boolean, any, null y undefined.
 
 // Lista de Strings.
 let nombres: string[] = ["Anselmo", "Pedro", "Juan"];
@@ -220,7 +218,7 @@ let comprasSemana: string[] = [...comprasViernes]
 
 comprasSemana.forEach((producto) => console.log(producto));
 
-// Facto de propagación para reasignar valores de un objeto.
+// Factor de propagación para reasignar valores de un objeto.
 const usuario: object = {
   nombre: "Anselmo",
   id: "1s452fqac",
@@ -236,4 +234,205 @@ console.log(usuarioActual)
 
 console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
 
+// Funciones
+/**
+ * Función que muestra un saludo por consola.
+ */
+function saludar() {
+  let nombre: string = "Anselmo";
+  console.log(`!Hola, ${nombre}`);
+}
 
+// Invocación de la función
+saludar();
+
+/**
+ * Función que muestra un saludo por consola a persona.
+ * @param nombre Nombre ha mostrar por consola.
+ */
+function saludarPersona(nombre: string) {
+  console.log(`¡Hola, ${nombre}!`)
+}
+
+saludarPersona("Anselmo");
+// saludarPersona(4);
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Parámetro por defecto
+function despedir(nombre: string = "Carles") {
+  console.log(`¡Adiós, ${nombre}!`)
+}  
+despedir();
+despedir("Anselmo");
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Parámetro opcional 
+/**
+ * Función para despedir persona.
+ * @param nombre string | undefined
+ */
+function despedirPersona(nombre?: string) {
+  if (nombre) console.log(`¡Adiós, ${nombre}!`)
+  else console.log("Adiós amigo mio.")
+}
+despedirPersona("Anselmo");
+despedirPersona();
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Usando varios parámetros
+function variosParametros(nombre: string, apellidos?: string, edad: number = 17) {
+  if (apellidos) console.log(`${nombre} ${apellidos} tiene ${edad}`)
+  else console.log(`${nombre} tiene ${edad}`)
+}
+
+variosParametros("Anselmo");
+variosParametros("Anselmo", "Del Hoyo");
+variosParametros("Anselmo", "Del Hoyo", 18);
+variosParametros("Anselmo", undefined, 18);
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Parámetro de diferentes tipos
+function variosTipos(parametro: string | number) {
+  if (typeof(parametro) === "string") console.log("Parámetro de tipo string.")
+  else console.log("Parámetro de tipo number.")
+}
+
+variosTipos("string")
+variosTipos(2022)
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Retornando valores
+function obtenerNombre(nombre: string) {
+  return `Nombre: ${nombre}`;
+}
+
+let miNombre = obtenerNombre("Anselmo");
+console.log(miNombre)
+
+// Podemos definir tipos de valores a retornar
+function obtenerEdad(edad?: string): string | number {
+  return `Edad: ${edad}`;
+  // return 12;
+}
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+let miEdad = obtenerEdad("17")
+console.log(miEdad)
+
+// Funciones flecha
+const sumar = (num1: number, num2: number): number => num1 + num2;
+const suma = sumar(2,2);
+console.log(`Resultado: ${suma}`);
+console.log(`Resultado: ${sumar(5,4)}`);
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Operador Spread como parámetro.
+function sumarNumeros(...numeros: number[]): void {
+  numeros.forEach((numero, index )=>{
+    let suma = numero + numeros[--index]
+    !isNaN(suma) 
+      ? console.log(`Suma:`, suma) 
+      : console.log("--- Resultados ---")
+  })
+} 
+sumarNumeros(12,54,32,2,8)
+
+function restarNumeros(numeros: number[]): void {
+  numeros.forEach((numero, index)=>{
+    let resta = numero - numeros[--index]
+    !isNaN(resta) 
+      ? console.log(`Resta:`, resta) 
+      : console.log("--- Resultados ---")
+  })
+}
+restarNumeros([12, 54, 32, 2, 8])
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+type persona = {
+  nombre: string,
+  apellido: string,
+  edad: number,
+}
+
+let empleado: persona = {
+  nombre: "Fabio",
+  apellido: "Martinez",
+  edad: 32,
+}
+
+const obtenerEmpleado = (empleado: persona): string => `El empleado ${empleado.nombre} tiene ${empleado.edad} años.`
+
+console.log(obtenerEmpleado(empleado));
+
+const cobrarEmpleado = (empleado: persona, cobrarMas: Function, cobrarMenos: Function) => {
+  if (empleado.edad > 24) console.log(cobrarMas(empleado.edad))
+  else console.log(cobrarMenos(empleado.edad))
+}
+
+const cobrarMas = (edad: number): string => `Este empleado tiene ${edad}, por eso cobrará: 2000 €`
+const cobrarMenos = (edad: number): string => `Este empleado tiene ${edad}, por eso cobrará: 500 €`
+
+cobrarEmpleado(empleado, cobrarMas, cobrarMenos);
+
+// Funciones asíncronas.
+async function obtenerDatos(): Promise<string> {
+  let result = await "Hago una acción tardía."
+  return result
+}
+obtenerDatos()
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error))
+  .finally(() => console.log("A finalizado la operación"))
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Funciones generadoras.
+function* generarNumeros() {
+  // Yield --> sirve para emitir errores.
+  let index = 0;
+  while (index < 5) {
+    // Emitimos un valor
+    yield index;
+    index++
+  }
+}
+
+let numeroGenerado = generarNumeros();
+
+console.log(numeroGenerado.next().value);
+console.log(numeroGenerado.next().value);
+console.log(numeroGenerado.next().value);
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Funciones generadoras dentro de funciones generadoras
+function* watcher(numero: number) {
+  // Emitimos el valor inicial.
+  yield numero ;
+  // Llamamos a las emisiones del Worker para que emite más valores.
+  yield* worker(numero); 
+  // Emitimos el valor final.
+  yield numero + 4; 
+}
+
+function* worker(numero: number) {
+  yield numero + 1;
+  yield numero + 2;
+  yield numero + 3;
+}
+
+let generarSaga = watcher(0);
+
+// Valores obtenidos por la función generadora.
+console.log(generarSaga.next().value);
+console.log(generarSaga.next().value);
+console.log(generarSaga.next().value);
+console.log(generarSaga.next().value);
