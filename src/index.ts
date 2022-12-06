@@ -1,3 +1,6 @@
+// Cookies Utils
+import { setCookie, deleteCookie, deleteAllCookies, cookieExists, cookieHasValue } from "cookies-utils";
+
 // Este es un comentario en TS.
 
 console.log("Hola TypeScript");
@@ -436,3 +439,83 @@ console.log(generarSaga.next().value);
 console.log(generarSaga.next().value);
 console.log(generarSaga.next().value);
 console.log(generarSaga.next().value);
+
+// Sobrecarga de funciones.
+/*
+  Tiende a ocurrir dentro de las clases, funciones con mismo nombre 
+  nombre pero dependiendo del parámetro pasado, esta ejecutará algo distinto.
+*/
+
+// Persistencia de datos en el navegador
+/*
+  - Session Storage --> Almacenamiento durante la sesión.
+  - Local Storage   --> Almacenamiento en el navegador del cliente.
+  - Cookies         --> Tienen una fecha de caducidad y también tienen un ámbito de URL.
+*/
+
+// Local and Session Storage
+
+// function saveSession(key: string | number, value: any):void {
+//   sessionStorage.setItem(key, value);
+// }
+// const item = saveSession("Name", "Anselmo");
+// const myItem = sessionStorage.getItem("Name");
+
+// Cookies
+
+// type Cookie = {
+//   name: string,    // string,
+//   value: string,   // string,
+//   maxAge: number,  // optional number (value in seconds),
+//   expires: Date,   // optional Date,
+//   path: string,    // optional string,
+//   domain: string | undefined,  // optional string,
+//   secure: boolean | undefined, // optional boolean,
+// }
+
+// more information about the options in documentation https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+// const cookieOptions: Cookie = {
+//   name: "name", // string,
+//   value: "value", // string,
+//   maxAge: 10 * 60, // optional number (value in seconds),
+//   expires: new Date(2099, 10, 1), // optional Date,
+//   path: "/", // optional string,
+//   domain: undefined,
+//   secure: undefined,
+// };
+// setCookie(cookieOptions);
+
+// Confirmar si existe
+// const isExist = cookieExists("name");
+
+// Eliminar cookie
+// deleteCookie("name")
+
+// Confirmar su valor
+// const hasValue = cookieHasValue("name", "value");
+
+// Eliminar todas las cookies
+// deleteAllCookies();
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Breve introducción a las clases y gestión de eventos
+
+class Temporizador {
+
+  public terminar?: Function = (): void => {};
+
+  public empezar(time: number): void {
+    setTimeout(() => {
+      if (!this.terminar) return;
+      this.terminar();
+    }, time)
+  }
+
+}
+
+const miTemporizador: Temporizador = new Temporizador();
+
+miTemporizador.terminar = () => console.log("El Temporizador ha terminado.");
+
+miTemporizador.empezar(1000);
