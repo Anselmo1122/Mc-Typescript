@@ -1,5 +1,8 @@
 // Cookies Utils
-import { setCookie, deleteCookie, deleteAllCookies, cookieExists, cookieHasValue } from "cookies-utils";
+// import { setCookie, deleteCookie, deleteAllCookies, cookieExists, cookieHasValue } from "cookies-utils";
+import { listaDeCursos } from "./mock/cusos.mock";
+import { Curso } from "./models/Curso";
+import { Estudiante } from "./models/Estudiante";
 
 // Este es un comentario en TS.
 
@@ -391,9 +394,9 @@ async function obtenerDatos(): Promise<string> {
   return result
 }
 obtenerDatos()
-  .then((result) => console.log(result))
+  // .then((result) => console.log(result))
   .catch((error) => console.log(error))
-  .finally(() => console.log("A finalizado la operación"))
+  // .finally(() => console.log("A finalizado la operación"))
 
 console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
 
@@ -506,10 +509,12 @@ class Temporizador {
   public terminar?: Function = (): void => {};
 
   public empezar(time: number): void {
+
     setTimeout(() => {
       if (!this.terminar) return;
       this.terminar();
     }, time)
+
   }
 
 }
@@ -519,3 +524,60 @@ const miTemporizador: Temporizador = new Temporizador();
 miTemporizador.terminar = () => console.log("El Temporizador ha terminado.");
 
 miTemporizador.empezar(1000);
+
+// Eliminar la ejecución de la función.
+delete miTemporizador.terminar;
+
+// ? Clases 
+
+// ----------------> Creamos los cursos
+
+// const cursoTs: Curso = new Curso("TypeScript", 8);
+// const cursoJs: Curso = new Curso("JavaScript", 10);
+
+// const listaDeCursos: Curso[] = [];
+
+// listaDeCursos.push(cursoTs, cursoJs); // Lista de Cursos
+
+// ----------------> Creamos un mock que exporta la lista de cursos y lo importamos.
+
+// ----------------> Creamos estudiante.
+
+const anselmo: Estudiante = new Estudiante("Anselmo", "Del Hoyo", listaDeCursos)
+
+console.log(`Hola! soy ${anselmo.nombre} ${anselmo.apellidos}, y he completado estos cursos.`);
+
+listaDeCursos.forEach((curso) => console.log(`${curso.nombre}: ${curso.horas} horas invertidas`))
+
+// Podemos crear más cursos.
+
+const cursoAngular: Curso = new Curso("Angular", 25);
+
+listaDeCursos.push(cursoAngular);
+
+// Saber la instancia de un Objeto/Variable.
+
+// typeof / instanceof
+
+console.log(cursoAngular instanceof Curso);
+
+// Mock: hace referencia a datos inventados o falsos.
+
+const horasTotalesAnselmo = anselmo.obtenerHorasCursos;
+console.log(`- Horas Totales estudiadas: ${horasTotalesAnselmo}`);
+
+const DNINuevo: number = 123456;
+
+// Asignamos un nuevo valor a la propiedad privada DNI
+anselmo.modificarDNI = DNINuevo;
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+
+
+
+
+
+
+
+
