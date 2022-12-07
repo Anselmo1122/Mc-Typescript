@@ -3,6 +3,9 @@
 import { listaDeCursos } from "./mock/cusos.mock";
 import { Curso } from "./models/Curso";
 import { Estudiante } from "./models/Estudiante";
+import { InterfaceTarea, Nivel } from "./models/interfaces/InterfaceTarea";
+import { Jefe, Persona, Trabajador } from "./models/Persona";
+import { Programar } from "./models/Programar";
 
 // Este es un comentario en TS.
 
@@ -555,11 +558,11 @@ const cursoAngular: Curso = new Curso("Angular", 25);
 
 listaDeCursos.push(cursoAngular);
 
-// Saber la instancia de un Objeto/Variable.
+// Validar la instancia de un Objeto/Variable.
 
 // typeof / instanceof
 
-console.log(cursoAngular instanceof Curso);
+if (cursoAngular instanceof Curso) console.log("- Es una instancia de Curso");
 
 // Mock: hace referencia a datos inventados o falsos.
 
@@ -573,11 +576,102 @@ anselmo.modificarDNI = DNINuevo;
 
 console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
 
+// Herencia y Polimorfismo
 
+const persona1 = new Persona("Frank", "Stwart", 15);
 
+const trabajador1 = new Trabajador("Anselmo", "Del Hoyo", 18, 2500);
+const trabajador2 = new Trabajador("Fernando", "García", 30, 900);
+const trabajador3 = new Trabajador("William", "Park", 20, 1000);
 
+const jefe1 = new Jefe("Mark", "Smith", 53, []);
+jefe1.trabajadores.push(trabajador1, trabajador2, trabajador3);
 
+persona1.saludar(); // Saludo de Persona
 
+trabajador1.saludar(); // Saludo heredado de persona, especficado en trabajador
 
+jefe1.saludar(); // Saludo heredado de persona
 
+console.log("--- Trabajadores del jefe1 ---");
+jefe1.trabajadores.forEach((trabajador) => console.log(`- ${trabajador.nombre} ${trabajador.apellido}`));
 
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Uso de Interfaces.
+
+// Uso para la implementación en objetos
+
+const TareaIngles: InterfaceTarea = {
+
+  titulo: "Estudiar Inglés",
+  description: "Debo hacer la tarea sobre genitivo sajón.",
+  completada: false,
+  resumen: function(): string {
+    return `${this.titulo} - ${this.description}`
+  }
+
+}
+
+console.log(TareaIngles.resumen());
+
+// Uso para la implementación en Clases
+
+const ProgramoTypeScript = new Programar(
+  "Programar en TypeScript", 
+  false, 
+  undefined,
+  Nivel.Bloqueante,
+)
+
+console.log(ProgramoTypeScript.resumen());
+
+console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+
+// Decoradores ---> @ 
+
+// Experimentales
+// Añadir para:
+// - Clases
+// - Parámetros
+// - Métodos
+// - Propiedades
+
+// function Override(label: string) {
+//   return function decoratedProperty(target: object, propertyKey: string) {
+//     Object.defineProperty(target, propertyKey, {
+//       configurable: false,
+//       get: () => label,
+//     })
+//   }
+// }
+
+// class PruebaDecorador {
+//   @Override("Prueba") nombre: string = "Anselmo";
+// }
+
+// let decorador: PruebaDecorador = new PruebaDecorador();
+// console.log(decorador.nombre);
+
+// Decoradores para Parámetros y Propiedades
+
+function decoratedProperty(target: Object, propertyKey: string) {
+  console.log('Nombre de la propiedad', propertyKey);
+  console.log('Clase', target.constructor);
+
+  console.log("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")
+}
+
+function decoratedParam(target: Object, propertyKey: string, parameterIndex: number) {
+  console.log('Nombre del metodo', propertyKey);
+  console.log('Posicion del parámetro', parameterIndex);
+  console.log('Clase', target.constructor);
+}
+
+class ExampleClass {
+  @decoratedProperty exampleProperty: string = 'Hello World';
+
+  sum(a: number, @decoratedParam b:number): number {
+    return a + b
+  }
+}
