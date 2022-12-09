@@ -689,3 +689,14 @@ if (s1 === s2) {
 } else {
   console.log('Singleton falló, las variables contienen diferentes instancias.');
 }
+
+// Depuración y métodos de documentación
+
+
+
+
+
+
+
+
+

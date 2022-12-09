@@ -1,3 +1,6 @@
 # Archivos de node.
 node_modules/
 package-lock.json
+
+# Configuraciones
+.vscode

@@ -112,3 +112,25 @@ Patrones de diseño
   Nota: "estudiar cada uno de los patrones de diseño e intentar replicarlos".
   
 
+Sesión 8 -------------------------------------------------
+
+  Depuración
+
+    Para depurar nuestro código en TypeScript es necesario que creemos un archivo
+    "launch.json" en el cual especificaremos la configuración para la ejecución de 
+    la depuración.
+
+    Nota: "Aprender a configurar launch.json"
+
+  Documentación
+
+    "Un código bien escrito no necesita documentación"
+
+    Para documentar nuestro código en TypeScript podemos usar la herramienta TypeDoc.
+    Esta herramienta nos permita documentar nuestro projecto generando a través de un script
+    que genera un archivo HTML estilizado para poder mostrar nuestra documentación en la web.
+
+    Comando para instalación: npm i typedoc --save-dev
+
+    Documentación para aprender a documentar con TypeDoc: https://typedoc.org/
+    Playground para pruebas: https://microsoft.github.io/tsdoc/# 
