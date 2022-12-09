@@ -59,4 +59,56 @@ Sesión 4 -------------------------------------------------
 Sesión 5 -------------------------------------------------
 Sesión 6 -------------------------------------------------
 
+Sesión 7 -------------------------------------------------
+
+Patrones de diseño
+
+    Se refieren a la organización y estructura de archivos empleada en un proyecto
+  informático, tienen el objetivo de garantizar escalabilidad, buena gestión de la 
+  información, entre otras características consideradas como buenas prácticas. Existe 
+  una gran variedad de patrones de diseño, cada uno orientado a abarcar un conjunto de
+  soluciones en concreto. Hoy en día es impresindible que los desarrolladores conozcan
+  un abanico de patrones de diseño y que estos puedan adaptarlos segun las necesidades
+  planteadas en un proyecto. A continuación hablaremos más acerca de cuales patrones
+  existen:
+
+  1. Patrones Creacionales
+    - Mecanismos de creación de objetos.
+    - Reutilización del código.
+    - Ofrecer flexibilidad al código.
+
+      - Factory Method
+      - Abstract Factory
+      - Builder 
+      - Prototype 
+      - Singleton
+
+  2. Patrones Estructurales 
+    - Eficiencia y flexibilidad de la estructura a la hora de definir clases y objetos.
+
+      - Adapter 
+      - Bridge 
+      - Composite 
+      - Decorator 
+      - Facade 
+      - Flyweight 
+      - Proxy
+
+  3. Patrones de Comportamiento
+    - Centrados en la asignación efectiva de responsabilidad entre objetos.
+    - Comunicación entre objetos.
+
+      - Chain of Responsability
+      - Command 
+      - Iterator 
+      - Mediator 
+      - Observer 
+      - State 
+      - Strategy 
+      - Visiter 
+
+  Información sobre este tema: https://refactoring.guru/es/design-patterns/typescript
+
+  Nota: "estudiar cada uno de los patrones de diseño e intentar replicarlos".
+  
 

@@ -4,6 +4,7 @@ import { listaDeCursos } from "./mock/cusos.mock";
 import { Curso } from "./models/Curso";
 import { Estudiante } from "./models/Estudiante";
 import { InterfaceTarea, Nivel } from "./models/interfaces/InterfaceTarea";
+import { Singleton } from "./models/Patterns/Creacionales/singleton";
 import { Jefe, Persona, Trabajador } from "./models/Persona";
 import { Programar } from "./models/Programar";
 
@@ -674,4 +675,17 @@ class ExampleClass {
   sum(a: number, @decoratedParam b:number): number {
     return a + b
   }
+}
+
+// Patrones de diseño 
+// --- Patrones creacionales
+// --- --- Singleton
+
+const s1 = Singleton.getInstance();
+const s2 = Singleton.getInstance();
+
+if (s1 === s2) {
+  console.log('Singleton funciona, ambas variables contienen la misma instancia.');
+} else {
+  console.log('Singleton falló, las variables contienen diferentes instancias.');
 }
